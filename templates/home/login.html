@@ -1,0 +1,44 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+登录
+{% endblock %}
+
+{% block pagecontent %}
+    <h2>登录</h2>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" action="{% url 'App:login' %}">
+                {% csrf_token %}
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">用户名</span>
+                <input type="text" class="form-control" placeholder="请输入用户名" aria-describedby="basic-addon1" name="username">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">密码</span>
+                <input type="password" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon1" name="password">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">验证码</span>
+                <input type="text" class="form-control" placeholder="请输入验证码" aria-describedby="basic-addon1" name="randcode">
+
+            </div>
+                <img src="{% url 'App:verifycode' %}" alt="" onclick="this.src='/verifycode/?id='+Math.random()" style="cursor: pointer;">
+                <span><a href="#">已有账户，未激活？</a></span>
+                <br>
+                <br>
+{#            <span> <a href="{{ url_for('huser.again_activate',_external=True) }}">已有账户 未激活？</a></span>#}
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="submit" class="btn btn-default">登录</button>
+    {#            <button type="button" class="btn btn-default">Right</button>#}
+            </div>
+            </form>
+        </div>
+        <div class="col-md-8">.col-md-8</div>
+    </div>
+{% endblock %}
+

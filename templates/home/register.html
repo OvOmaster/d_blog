@@ -1,0 +1,43 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+    注册
+{% endblock %}
+{% block pagecontent %}
+    <h2>注册</h2>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" action="{% url 'App:register' %}">
+                {% csrf_token %}
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">用户名</span>
+                <input type="text" class="form-control" placeholder="请输入用户名" aria-describedby="basic-addon1" name="username" required>
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">密码</span>
+                <input type="password" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon1" name="password" required>
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">确认密码</span>
+                <input type="password" class="form-control" placeholder="再次输入密码" aria-describedby="basic-addon1" name="confirm" required>
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">邮箱</span>
+                <input type="text" class="form-control" placeholder="用于激活，务必有效" aria-describedby="basic-addon1" name="email" required>
+            </div>
+            <br>
+{#            <span> <a href="{{ url_for('huser.again_activate',_external=True) }}">已有账户 未激活？</a></span>#}
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="submit" class="btn btn-default">注册</button>
+    {#            <button type="button" class="btn btn-default">Right</button>#}
+            </div>
+            </form>
+        </div>
+        <div class="col-md-8">.col-md-8</div>
+    </div>
+{% endblock %}

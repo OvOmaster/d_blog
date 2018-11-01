@@ -1,0 +1,22 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+发表博客
+{% endblock %}
+
+{% block pagecontent %}
+    <div class="page-header"><h2>发表博客</h2></div>
+<form method="post" action="{% url 'App:send_posts' %}">
+    {% csrf_token %}
+    <label for="male">标题</label>
+    <input type="text" placeholder="标题必须在1-20字以内" name="title" id="male" class="form-control" required />
+    <br/>
+    <label for="female">正文</label>
+    <textarea name="article" id="female" class="form-control" style="height: 500px" required></textarea>
+    <br>
+{#    <div class="btn-group" role="group" aria-label="...">#}
+        <button type="submit" class="btn btn-warning">发表</button>
+    {#            <button type="button" class="btn btn-default">Right</button>#}
+{#    </div>#}
+</form>
+{% endblock %}

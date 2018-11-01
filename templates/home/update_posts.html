@@ -1,0 +1,22 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+修改博客
+{% endblock %}
+
+{% block pagecontent %}
+    <div class="page-header"><h2>修改博客</h2></div>
+<form method="post" action="{% url 'App:update_posts' %}?id={{ posts.id }}">
+    {% csrf_token %}
+    <label for="male">标题</label>
+    <input type="text" value={{ posts.title }} placeholder="标题必须在1-20字以内" name="title" id="male" class="form-control" required />
+    <br/>
+    <label for="female">正文</label>
+    <textarea name="article" id="female" class="form-control" style="height: 500px" required>{{ posts.article }}</textarea>
+    <br>
+{#    <div class="btn-group" role="group" aria-label="...">#}
+        <button type="submit" class="btn btn-warning">提交</button>
+{#        <button type="reset" class="btn btn-default">清空</button>#}
+{#    </div>#}
+</form>
+{% endblock %}

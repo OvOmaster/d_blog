@@ -1,0 +1,29 @@
+{% extends 'common/base.html' %}
+{% load static from staticfiles %}
+
+{% block title %}
+上传头像
+{% endblock %}
+
+{% block pagecontent %}
+    <div class="page-header"><h2>上传头像</h2></div>
+    <form action="{% url 'App:upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <span><h3>当前头像：</h3></span>
+            <img src="{% static user.icon %}">
+        </div>
+        <br>
+        <br>
+        <div class="input-group">
+            <span><h3>选择头像：</h3></span>
+            <input type="file" name="icon">
+        </div>
+        <br>
+        <br>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="submit" class="btn btn-info">上传</button>
+            <button type="reset" class="btn btn-default">重选</button>
+        </div>
+    </form>
+{% endblock %}

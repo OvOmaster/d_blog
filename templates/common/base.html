@@ -1,0 +1,71 @@
+{% extends 'bootstrap/base.html' %}
+{% block navbar %}
+    <nav class="navbar navbar-inverse" style="border-radius: 0;">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brand</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{% url 'App:index' %}">首页 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="{% url 'App:send_posts' %}">发表博客</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <form class="navbar-form navbar-left" method="post" action="{% url 'App:search_posts' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search" name="search" required>
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                    {% if request.user.is_authenticated %}
+                    <li><a href="">欢迎：{{ request.user.username }}</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">个人中心 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'App:update_username' %}">修改用户名</a></li>
+                            <li><a href="{% url 'App:update_password' %}">修改密码</a></li>
+                            <li><a href="{% url 'App:upload' %}">上传头像</a></li>
+                            <li><a href="{% url 'App:posts_manager' %}">博客管理</a></li>
+                            <li><a href="{% url 'App:my_favourite' %}">我的收藏</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{% url 'App:logout' %}">退出登录</a></li>
+                        </ul>
+                    </li>
+                        {% else %}
+                        <li><a href="{% url 'App:login' %}">登录</a></li>
+                        <li><a href="{% url 'App:register' %}">注册</a></li>
+                    {% endif %}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        {% if info %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{ info }}
+            </div>
+        {% endif %}
+        {% block pagecontent %}
+
+            <h2>这是我们自己定义的base 以后所有的子模板都继承我就好</h2>
+        {% endblock %}
+    </div>
+{% endblock %}
+

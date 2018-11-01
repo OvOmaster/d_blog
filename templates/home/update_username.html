@@ -1,0 +1,25 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+修改用户名
+{% endblock %}
+
+{% block pagecontent %}
+    <div class="page-header"><h2>修改用户名</h2></div>
+    <div class="col-md-4">
+        <form action="{% url 'App:update_username' %}" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">用户名</span>
+                <input type="text" class="form-control" value={{ request.user.username }} aria-describedby="basic-addon1" name="username" required>
+            </div>
+            <br>
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="submit" class="btn btn-info">提交</button>
+                <button type="button" class="btn btn-default">重置</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8"></div>
+{% endblock %}
+
