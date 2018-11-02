@@ -72,9 +72,12 @@ def posts_detail(req):
     posts_id = req.GET.get('id')
     posts = Posts.objects.filter(id=posts_id).first()
     cusers = posts.collect_user.all()
+    comments = posts.comment_set.all().order_by('create_time')
+    for comment in comments:
+        comment.from_user.icon = '/upload/' + comment.from_user.icon
     posts.visit += 1
     posts.save()
-    return render(req, 'home/posts_detail.html', {'posts': posts, 'cusers': cusers})
+    return render(req, 'home/posts_detail.html', {'posts': posts, 'cusers': cusers, 'comments': comments})
 
 
 def posts_manager(req):

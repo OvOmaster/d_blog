@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from App.views import views, user, posts, owncenter
+from App.views import views, user, posts, owncenter, comment
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^do_favourite/$', posts.do_favourite, name='do_favourite'),
     url(r'^delete_favourite/$', posts.delete_favourite, name='delete_favourite'),
     url(r'^my_favourite/$', owncenter.my_favourite, name='my_favourite'),
+    url(r'^send_comment/$', comment.send_comment, name='send_comment'),
 
 ]

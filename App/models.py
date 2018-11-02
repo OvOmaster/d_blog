@@ -55,3 +55,13 @@ class Posts(models.Model):
     #         if user == i:
     #             return True
     #     return False
+
+
+class Comment(models.Model):
+    from_posts = models.ForeignKey(Posts)
+    from_user = models.ForeignKey(User)
+    content = models.CharField(max_length=120)
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'comment'
