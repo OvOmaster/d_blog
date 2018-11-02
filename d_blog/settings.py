@@ -127,9 +127,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-EMAIL_HOST = 'smtp.qq.com'
-EMAIL_HOST_USER = '490511323@qq.com'
-EMAIL_HOST_PASSWORD = 'sgxgnwwgqtlhbjgj'
+EMAIL_HOST = '' # 引号中填写激活邮件的发送邮箱的smtp服务器
+EMAIL_HOST_USER = '' # 引号中填写激活邮件的发送邮箱账号
+EMAIL_HOST_PASSWORD = '' # 引号中填写激活邮件的发送邮箱密码
 
 AUTH_USER_MODEL = 'App.User'
 
